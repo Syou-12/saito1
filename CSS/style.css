@@ -1,0 +1,876 @@
+@charset "utf-8";
+
+html {
+    font-size: 100%;
+}
+
+body {
+    color: #333;
+    letter-spacing: 0.1rem;
+    font-family: "游ゴシック体", "YuGothic", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+}
+
+.all {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ヘッダー
+-------------------*/
+
+#start {
+    display: flex;
+    height: 100px;
+    padding: 40px 0 0 50px;
+    justify-content: space-between;
+}
+
+.bg img {
+    height: 56.26px;
+}
+
+#start img {
+    height: 56.26px;
+    vertical-align: bottom;
+}
+
+.mein-b {
+    position: absolute;
+}
+
+.mein-b h2 {
+    font-size: 2.875rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 6px #fff;
+}
+
+.mein-b a {
+    background-color: #ff2a2a;
+    border-bottom: 6px solid #9a0413;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    display: block;
+    padding: 15px 35px;
+    text-align: center;
+    transition: 0.3s;
+    position: relative;
+    text-decoration: none;
+}
+
+.lg {
+    width: 100px;
+    top: 40px;
+    left: 50px;
+    position: absolute;
+}
+
+.nav-list {
+    margin: 80px 0 40px 0;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nav-bt {
+    width: 250px;
+    border: solid 1px #fff;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 15px 0;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-bt::after {
+    content: " ";
+    width: 250px;
+    border-right: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+    padding: 15px 0;
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+}
+
+.nav-bt a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* ボタン */
+
+/* ----------------------- */
+/* base_sp
+/* ----------------------- */
+/* デフォルトのbuttonスタイルをリセット */
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    vertical-align: middle;
+}
+
+/* 以下、ハンバーガーボタン */
+.burger-btn {
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    z-index: 30;
+    border: none;
+    background-color: #ff2a2a;
+    margin-top: -40px;
+}
+
+.bar {
+    width: 50px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+}
+
+.bar_top {
+    top: 30px;
+}
+
+.bar_mid {
+    top: 70px;
+}
+
+.bar_bottom {
+    bottom: 49px;
+}
+
+.burger-btn.close .bar_top {
+    transform: translate(-50%, 10px) rotate(45deg);
+    transition: transform .3s;
+}
+
+.burger-btn.close .bar_mid {
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.burger-btn.close .bar_bottom {
+    transform: translate(-50%, -8px) rotate(-45deg);
+    transition: transform .3s;
+}
+
+/* 以下、ハンバーガーメニュー */
+.bg {
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transform: translateX(100%);
+    transition: transform .3s;
+    width: 100vw;
+    z-index: 30;
+    /*キービジュアルと.btn_triggerとの重なりの前後関係を調整*/
+}
+
+.header-nav {
+    width: 100%;
+    height: 100%;
+    background-color: #ff2a2a;
+    z-index: 30;
+}
+
+.nav-list {
+    display: block;
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.nav-item {
+    margin-right: 0;
+    margin-bottom: 40px;
+}
+
+.noscroll {
+    overflow: hidden;
+}
+
+/* メニューオープン時 */
+.bg.slide-in {
+    transform: translateX(0);
+}
+
+/* スライドショー メインヴィジュアル
+-------------------*/
+#mein-v {
+    height: 720px;
+    position: relative;
+    margin-bottom: 120px;
+}
+
+#mein-v .mein-b {
+    position: absolute;
+    top: 280px;
+    left: 10%;
+    z-index: 10;
+}
+
+#mein-v .fade li {
+    width: 75%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* 最初は3枚の画像を非表示にしておく */
+    opacity: 0;
+    /*
+    アニメーションを実行
+    fade：下で定義している「@keyframes fade」を実行
+    15s：「@keyframes fade」の処理を15秒かけて実行
+    infinite：アニメーションの処理を無限に繰り返す
+    */
+    animation: fade 15s infinite;
+    list-style: none;
+}
+
+#mein-v .fade li:nth-child(1) {
+    animation-delay: 0s;
+}
+
+#mein-v .fade li:nth-child(2) {
+    animation-delay: 5s;
+}
+
+#mein-v .fade li:nth-child(3) {
+    animation-delay: 10s;
+}
+
+#mein-v .fade li img {
+    width: 100%;
+    height: 720px;
+    object-fit: cover;
+}
+
+#mein-v .fade li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: inset 0px 0px 20px 20px #fff;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    45% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* BBBが選ばれる理由
+---------------------*/
+
+.wapper {
+    font-size: 2.25rem;
+    margin-bottom: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.wapper:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    /*下線の上下位置調整*/
+    display: inline-block;
+    width: 50px;
+    /*下線の幅*/
+    height: 2px;
+    /*下線の太さ*/
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translate(-50%);
+    /*位置調整*/
+    background-color: #666666;
+}
+
+.main-one {
+    background-color: #ff2a2a;
+    padding: 80px 0;
+}
+
+.slide {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    opacity: 0;
+    padding: 5%;
+    margin-bottom: 40px;
+}
+
+.slide img {
+    width: auto;
+    height: 60px;
+    margin-right: 30px;
+}
+
+#select .slide .title-red {
+    color: #ff2a2a;
+    display: block;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+#select .slide .text {
+    display: block;
+    font-size: 1.125rem;
+}
+
+#select .inview-slide-left {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#select .inview-slide-left {
+    animation: slide-left 0.5s ease-out 0s 1 forwards;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#select .inview-slide-right {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+
+#select .inview-slide-right {
+    animation: slide-right 0.5s ease-out 0s 1 forwards;
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translateX(150%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+
+/* 受講生の声
+--------------*/
+
+.item-left {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 60px;
+
+}
+
+.item-left img {
+    width: 120px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.name {
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+.text-a {
+    width: 60%;
+    background: #e9f1fb;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-left: 25px;
+}
+
+.text-a:before {
+    content: "";
+    position: absolute;
+    top: 60%;
+    left: 0;
+    margin-left: -30px;
+    border: 15px solid transparent;
+    border-right: 15px solid #e9f1fb;
+}
+
+.text-a p {
+    text-align: left;
+}
+
+#voice .item-right {
+    justify-content: flex-end;
+}
+
+.item-right {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+.item-right img {
+    width: 120px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.text-b {
+    width: 60%;
+    background: #e9f1fb;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-right: 25px;
+}
+
+.text-b:before {
+    content: "";
+    position: absolute;
+    top: 60%;
+    right: 0;
+    margin-right: -30px;
+    border: 15px solid transparent;
+    border-left: 15px solid #e9f1fb;
+}
+
+.text-b p {
+    text-align: left;
+}
+
+#voice .inview-balloon {
+    animation: balloon 0.5s ease-out 0s 1 forwards;
+}
+
+.item-left {
+    transform: scale(1,1);
+}
+
+/* スクールの概要
+-----------------*/
+
+#overview {
+    padding: 60px 0;
+    margin-bottom: 120px;
+    background: url(../imagis/bg.gif);
+    animation: fall 10s infinite linear;
+}
+
+@keyframes fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -700px 700px;
+    }
+}
+
+#overview .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#overview .menu li {
+    width: 48%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 60px;
+    margin-bottom: 32px;
+    list-style: none;
+}
+
+#overview .menu-title {
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+}
+
+#overview .menu-title .ja {
+    display: block;
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+}
+
+#overview .menu-title .en {
+    display: block;
+    font-size: 1.125rem;
+    margin-bottom: 30px;
+}
+
+/* 申し込み
+-------------*/
+#entry {
+    margin-bottom: 120px;
+    text-align: center;
+}
+
+.flee {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.lesson {
+    display: block;
+    font-size: 1.125rem;
+    margin-bottom: 40px;
+    margin-top: 5px;
+}
+
+.btn {
+    background-color: #ff2a2a;
+    border-radius: 40px;
+    border: solid 3px #ff2a2a;
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: bold;
+    display: block;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* フッター
+-------------*/
+
+#footer {
+    background-color: #e8e8e8;
+    padding: 60px 0 20px 0;
+}
+
+.last {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+#footer .last>li {
+    width: 25px;
+}
+
+.pran li {
+    list-style: none;
+}
+
+.st {
+    font-weight: bold;
+}
+
+.pran {
+    padding: 10px 0 0 10px;
+}
+
+.copy {
+    font-size: 0.625rem;
+    text-align: center;
+}
+
+/* モバイル版
+-------------*/
+
+@media screen and (max-width: 900px) {
+
+    .all {
+        padding: 0 16px;
+    }
+
+    .wapper {
+        font-size: 1.75rem;
+        margin-bottom: 60px;
+    }
+
+    .wapper::after {
+        width: 80px;
+    }
+
+    /* ヘッダー
+-------------*/
+    #start {
+        padding: 25px 0 0 25px;
+    }
+
+    /* ボタン
+------------*/
+    .burger-btn {
+        width: 65px;
+        height: 85px;
+    }
+
+    .ber {
+        width: 40px;
+        left: 45px;
+    }
+
+    .ber_top {
+        top: 20px;
+    }
+
+    .ber_mid {
+        top: 40px;
+    }
+
+    .bar_bottom {
+        top: 50px;
+    }
+
+    .nav-list {
+        margin-top: 160px;
+    }
+
+    /* メイン
+---------------*/
+    #mein-v {
+        height: 490px;
+        margin-bottom: 80px;
+    }
+
+    #mein-v .fade li {
+        width: 100%;
+    }
+
+    #mein-v .fade li img {
+        height: 300px;
+    }
+
+    #mein-v .mein-b {
+        width: calc(100% - 32px);
+        top: 310px;
+        left: 16px;
+    }
+
+    #mein-v .mein-b .tx {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    #mein-v .mein-b .bt {
+        display: block;
+        width: 100%;
+        font-size: 30px;
+        margin-top: -10px;
+    }
+
+    .mein-b a {
+        margin-top: -20px;
+    }
+
+    /* BBBが選ばれる理由
+---------------------*/
+    #select {
+        margin-bottom: 80px;
+    }
+
+    #seletc .main-one {
+        padding: 40px 0;
+    }
+
+    #select .slide {
+        width: calc(100% - 16px);
+    }
+
+    #select .slide .title-red {
+        font-size: 1.5rem;
+    }
+
+    @keyframes slide-left {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-right {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(16px);
+        }
+    }
+
+    /* 受講生の声
+--------------*/
+    #voice {
+        margin-bottom: 80px;
+    }
+
+    #voice .name {
+        text-align: center;
+    }
+
+    #voice .item-left #voice .item-right {
+        margin-bottom: 40px;
+    }
+
+    #voice .item-left {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #voice .item-right {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #voice .item-right .text-b {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+
+    #voice .item-left .text-a {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+
+    /* 吹き出し位置変更 */
+
+
+    #voice .item-right .text-b::before {
+        top: 100%;
+        border: 15px solid transparent;
+        border-top: 15px solid #e9f1fb;
+    }
+
+    #voice .item-left .text-a::before {
+        top: 100%;
+        border: 15px solid transparent;
+        border-top: 15px solid #e9f1fb;
+    }
+
+    #voice .item-left .text-a::before {
+        margin-left: calc(50% - 15px);
+    }
+
+    #voice .item-right .text-b::before {
+        margin-right: calc(50% - 15px);
+    }
+
+    /* スクールの概要
+    -----------------*/
+    #overview {
+        margin-bottom: 80px;
+    }
+    #overview .menu {
+        flex-direction: column;
+    }
+    #overview .menu li {
+        width: 100%;
+        padding: 30px;
+    }
+    #overview .menu li:nth-child(3) {
+        margin-bottom: 32px;
+    }
+    #overview .menu-title .ja {
+        font-size: 1.5rem;
+    }
+    #overview .menu-title .en {
+        font-size: 1rem;
+    }
+    /* 申し込み
+    -------------*/
+    #entry {
+        margin-bottom: 80px;
+    }
+    #entry .flee {
+        font-size: 1.5rem;
+    }
+    #entry .lesson {
+        font-size: 1rem;
+    }
+    #entry .btn {
+        font-size: 1.5rem;
+    }
+    /* フッター
+    ----------------*/
+    #footer .last {
+        flex-wrap: wrap;
+    }
+    #footer a {
+        font-size: 0.75rem;
+    }
+    #footer .last .st {
+        font-size: 0.9375rem;
+    }
+    #footer .last > li {
+        width: 50%;
+    }
+    #footer .last > li:nth-child(1)
+    #footer .last > li:nth-child(2) {
+        margin-bottom: 30px;
+    }
+    .course {
+        width: 50%;
+    }
+    .teacher {
+        width: 50%;
+    }
+}
